@@ -94,7 +94,7 @@ export class CalendarDirective implements OnInit, OnDestroy {
         this.rn.listen(standard, 'click', () => {
           this.calendar.showWeek = false;
           this.calendar.firstDayOfWeek = 0;
-          this.calendar.updateUI();
+          this.calendar.updateUI(); // added to reflect the changes made in the view
         }),
         this.rn.listen(broadcast, 'click', () => {
           this.calendar.showWeek = true;
