@@ -1,3 +1,4 @@
+// Reference Implementation: https://stackblitz.com/edit/primeng-calendar-demo-with-selectionmode-toggle-directive?file=src%2Fapp%2Fcalendar-mode-toggle.directive.ts
 import {
   Directive,
   ElementRef,
@@ -94,7 +95,7 @@ export class CalendarDirective implements OnInit, OnDestroy {
         this.rn.listen(standard, 'click', () => {
           this.calendar.showWeek = false;
           this.calendar.firstDayOfWeek = 0;
-          this.calendar.updateUI(); // added to reflect the changes made in the view
+          this.calendar.updateUI(); // Was added to reflect the changes in the UI
         }),
         this.rn.listen(broadcast, 'click', () => {
           this.calendar.showWeek = true;
