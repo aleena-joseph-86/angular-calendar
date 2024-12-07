@@ -5,6 +5,8 @@ import {
   OnInit,
   Renderer2,
   ChangeDetectorRef,
+  ApplicationRef,
+  NgZone,
 } from '@angular/core';
 import { Calendar } from 'primeng/calendar';
 
@@ -50,7 +52,9 @@ export class CalendarDirective implements OnInit, OnDestroy {
     private el: ElementRef,
     private calendar: Calendar,
     private rn: Renderer2,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private appRef: ApplicationRef,
+    private zone: NgZone
   ) {}
 
   ngOnInit() {
@@ -93,12 +97,13 @@ export class CalendarDirective implements OnInit, OnDestroy {
       this.toggleWrapper = toggleWrapper;
       this.buttons = [standard, broadcast];
       this.stopListening = [
-        this.rn.listen(broadcast, 'click', () => {
-          this.calendar.showWeek = true;
-          this.cdr.detectChanges();
-        }),
         this.rn.listen(standard, 'click', () => {
           this.calendar.showWeek = false;
+          this.calendar.updateUI();
+        }),
+        this.rn.listen(broadcast, 'click', () => {
+          this.calendar.showWeek = true;
+          this.calendar.updateUI();
         }),
       ];
     }

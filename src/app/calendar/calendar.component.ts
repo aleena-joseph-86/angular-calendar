@@ -9,4 +9,6 @@ import { CalendarDirective } from '../calendar.directive';
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss',
 })
-export class CalendarComponent {}
+export class CalendarComponent {
+  
+}
