@@ -4,9 +4,6 @@ import {
   OnDestroy,
   OnInit,
   Renderer2,
-  ChangeDetectorRef,
-  ApplicationRef,
-  NgZone,
 } from '@angular/core';
 import { Calendar } from 'primeng/calendar';
 
@@ -51,10 +48,7 @@ export class CalendarDirective implements OnInit, OnDestroy {
   constructor(
     private el: ElementRef,
     private calendar: Calendar,
-    private rn: Renderer2,
-    private cdr: ChangeDetectorRef,
-    private appRef: ApplicationRef,
-    private zone: NgZone
+    private rn: Renderer2
   ) {}
 
   ngOnInit() {
@@ -99,13 +93,16 @@ export class CalendarDirective implements OnInit, OnDestroy {
       this.stopListening = [
         this.rn.listen(standard, 'click', () => {
           this.calendar.showWeek = false;
+          this.calendar.firstDayOfWeek = 0;
           this.calendar.updateUI();
         }),
         this.rn.listen(broadcast, 'click', () => {
           this.calendar.showWeek = true;
+          this.calendar.firstDayOfWeek = 1;
           this.calendar.updateUI();
         }),
       ];
+      0;
     }
 
     const buttonBar = this.el.nativeElement.querySelector(
